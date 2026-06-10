@@ -1,13 +1,14 @@
-using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
-public class LoseScreenController : MonoBehaviour
+public class GameScreenController : MonoBehaviour
 {
     public TextMeshProUGUI[] textsStats;
+    
     private void Awake()
     {
-        textsStats = GetComponentsInChildren<TextMeshProUGUI>();
+        textsStats = GetComponentsInChildren<TextMeshProUGUI>(); 
+
     }
     public void GetStats()
     {
