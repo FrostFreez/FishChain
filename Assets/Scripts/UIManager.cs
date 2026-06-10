@@ -1,0 +1,26 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class UIManager : MonoBehaviour
+{
+    public static UIManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    private void Update()
+    {
+        GameManager.Instance.UpdateText();
+    }
+    public static void ResetStats()
+    {
+        GameManager.Instance.ResetStats();
+    }
+}
