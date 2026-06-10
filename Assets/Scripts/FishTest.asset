@@ -15,6 +15,6 @@ MonoBehaviour:
   fishName: Test
   fishLevel: 1
   fishSpeed: 2
-  mouthRadius: 1
+  mouthRadius: 0.5
   mouthOffset: 0.9
   animatorController: {fileID: 0}

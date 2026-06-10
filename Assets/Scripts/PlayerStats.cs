@@ -7,6 +7,7 @@ public class PlayerStats : CoreComponent
     {
         get { return instance; }
     }
+    private FishLink link;
     public float verticalSpeed = 5, horizontalSpeed = 0;
     public float totalTime = 0, totalDistance = 0;
     private void Awake()
@@ -15,11 +16,20 @@ public class PlayerStats : CoreComponent
     }
     public override void StartComponent()
     {
+        link = controller.Component<FishLink>();
     }
 
     public override void UpdateComponent()
     {
         totalTime += Time.deltaTime;
         totalDistance += Time.deltaTime * horizontalSpeed;
+        if (link.fish == null)
+        {
+            horizontalSpeed -= 0.5f * Time.deltaTime * horizontalSpeed;
+            if (horizontalSpeed < 0.1f)
+            {
+                horizontalSpeed = 0;
+            }
+        }
     }
 }

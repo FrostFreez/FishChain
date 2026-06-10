@@ -11,6 +11,8 @@ public class FishLink : CoreComponent
     public float catchSpeed = 3;
     public float initialOffset = 0.9f;
 
+    private bool firstFishCaught = false;
+
     public override void StartComponent()
     {
         Collider2D[] fishes = Physics2D.OverlapCircleAll(transform.position + +initialOffset * Vector3.right,
@@ -23,30 +25,30 @@ public class FishLink : CoreComponent
 
     public override void UpdateComponent()
     {
+        if (!firstFishCaught)
+        {
+            Caught();
+            firstFishCaught = true;
+        }
         if (fish != null)
         {
             fish.transform.position = new Vector2(fish.transform.position.x, transform.position.y);
-            if (fish.stateMachine.ActiveState().GetType() != typeof(LinkState))
-            {
-                Caught();
-            }
             if (pi.throwPressed)
             {
                 timeThrowing = 0;
                 fish?.stateMachine.ChangeState(fish.State<FreeState>());
-                fish = null;
                 circle.SetActive(true);
             }
         }
-        else
+        if (pi.throwHeld)
         {
             timeThrowing += Time.deltaTime;
-            circle.transform.position = transform.position + (catchSpeed * timeThrowing + initialOffset) * Vector3.right;
-            if (pi.throwReleased)
-            {
-                Catch(typeof(TameState));
-                circle.SetActive(false);
-            }
+        }
+        circle.transform.position = transform.position + (catchSpeed * timeThrowing + initialOffset) * Vector3.right;
+        if (pi.throwReleased)
+        {
+            Catch(typeof(TameState));
+            circle.SetActive(false);
         }
     }
     private void Catch(Type type)
@@ -70,6 +72,7 @@ public class FishLink : CoreComponent
         Vector2 newPos = Vector2.right * initialOffset;
         newPos += fish.GetComponent<CapsuleCollider2D>().bounds.size * 0.5f * Vector2.right;
         fish.transform.position = (Vector2)transform.position + newPos;
+        catchSpeed = fish.Component<FishHold>().fish.fishSpeed * 2;
     }
     private void OnDrawGizmos()
     {
