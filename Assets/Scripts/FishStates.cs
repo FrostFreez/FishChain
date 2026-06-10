@@ -18,6 +18,22 @@ public class SwimState : BaseState
     
 }
 
+public class TameState : BaseState
+{
+    private Rigidbody2D rb;
+    public TameState(EntityController controller, StateMachine stateMachine, string animName) : base(controller, stateMachine, animName)
+    {
+        rb = controller.rb;
+    }
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        rb.linearVelocityX = - PlayerStats.Instance.horizontalSpeed;
+    }
+
+
+}
+
 public class LinkState : BaseState
 {
     public LinkState(EntityController controller, StateMachine stateMachine, string animName) : base(controller, stateMachine, animName)
@@ -40,9 +56,13 @@ public class FreeState : BaseState
         rb = controller.rb;
         fish = controller.Component<FishHold>().fish;
     }
+    public override void Enter()
+    {
+        base.Enter();
+    }
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        rb.linearVelocityX = fish.fishSpeed;
+        rb.linearVelocityX = fish.fishSpeed * 2;
     }
 }

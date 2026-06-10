@@ -14,7 +14,7 @@ public class MoveState : BaseState
     public override void Update()
     {
         base.Update();
-        direction.y = pi.move.y;
+        direction.y = pi.move.y * PlayerStats.Instance.verticalSpeed;
     }
     public override void FixedUpdate()
     {

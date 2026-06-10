@@ -24,6 +24,10 @@ public class EntityController : MonoBehaviour
         stateMachine.Initialize(states[0]);
         foreach (CoreComponent c in components)
         {
+            c.SetUp(this);
+        }
+        foreach (CoreComponent c in components)
+        {
             c.StartComponent();
         }
     }
@@ -42,10 +46,27 @@ public class EntityController : MonoBehaviour
     }
     public T Component<T>() where T : CoreComponent
     {
-        return (T)components.Where(x => x.GetType() == typeof(T)).FirstOrDefault();
+        foreach (CoreComponent c in components)
+        {
+            Debug.Log(gameObject + ": " + c.gameObject);
+            if (c is T ret)
+            {
+                return ret;
+            }
+        }
+        Debug.LogWarning("No " + typeof(T) + " component was found!");
+        return null;
     }
     public T State<T>() where T : BaseState
     {
-        return (T)states.Where(x => x.GetType() == typeof(T)).FirstOrDefault();
+        foreach (BaseState c in states)
+        {
+            if (c is T ret)
+            {
+                return ret;
+            }
+        }
+        Debug.LogWarning("No " + typeof(T) + " component was found!");
+        return null;
     }
 }
