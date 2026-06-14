@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c7e22307a1e57a45b0124400bdb3adf, type: 3}
-  m_Name: JellyFish
+  m_Name: Octopus
   m_EditorClassIdentifier: Assembly-CSharp::FishSO
   fishName: 
-  fishLevel: 0
-  fishSpeed: 0
-  mouthRadius: 0
-  mouthOffset: 0
-  animatorController: {fileID: 9100000, guid: ab5bedb9edd09184eae95c0dd224690c, type: 2}
+  fishLevel: 5
+  fishSpeed: 25
+  mouthRadius: 2.5
+  mouthOffset: 1
+  animatorController: {fileID: 9100000, guid: f1d928c615eeb3c4cad9e7388a138b0b, type: 2}

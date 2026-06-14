@@ -322,6 +322,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 937273328039703836, guid: 40ed65c96cca77f42a4c6bac8742ef6d, type: 3}
+      propertyPath: fish
+      value: 
+      objectReference: {fileID: 11400000, guid: de92b5cb45293f244aaa41df9fb96411, type: 2}
+    - target: {fileID: 2034263110849160502, guid: 40ed65c96cca77f42a4c6bac8742ef6d, type: 3}
+      propertyPath: fish
+      value: 
+      objectReference: {fileID: 11400000, guid: de92b5cb45293f244aaa41df9fb96411, type: 2}
     - target: {fileID: 4392040068330940136, guid: 40ed65c96cca77f42a4c6bac8742ef6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.16
@@ -362,6 +370,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5447915296070782757, guid: 40ed65c96cca77f42a4c6bac8742ef6d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f1d928c615eeb3c4cad9e7388a138b0b, type: 2}
     - target: {fileID: 6005500569417135018, guid: 40ed65c96cca77f42a4c6bac8742ef6d, type: 3}
       propertyPath: m_Name
       value: Fish
