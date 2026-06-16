@@ -13,47 +13,69 @@ public class EatFish : CoreComponent
     {
         if (controller.stateMachine.ActiveState().GetType() == typeof(SwimState))
         {
-            Eat();
+            Eat(-1);
         }
-        else if(controller.stateMachine.ActiveState().GetType() == typeof(LinkState))
+        else if (controller.stateMachine.ActiveState().GetType() == typeof(LinkState))
         {
             Die();
+            Eat(1);
         }
     }
-    private void Eat()
+    private void Eat(int flip)
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(
-            (Vector2)transform.position + Vector2.left * fish.mouthOffset, fish.mouthRadius, LayerMask.GetMask("Fish"));
-        if (colliders.Length > 1)
+        if (controller.stateMachine.ActiveState().GetType() != typeof(DieState))
         {
-            FishController other;
-            if (colliders[0].gameObject == controller.gameObject)
-            {
-                other = colliders[1].GetComponent<FishController>();
-            }
-            else
-            {
-                other = colliders[0].GetComponent<FishController>();
-            }
-            if (other == null) { return; }
 
-            FishSO otherFish = other.Component<FishHold>().fish;
-
-            if (other.stateMachine.ActiveState().GetType() == typeof(FreeState))
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(
+                (Vector2)transform.position + fish.mouthOffset * flip * Vector2.right, fish.mouthRadius, LayerMask.GetMask("Fish"));
+            if (colliders.Length > 1)
             {
-                if (otherFish.fishLevel < fish.fishLevel)
+                FishController otherFish;
+                if (colliders[0].gameObject == controller.gameObject)
                 {
-                    controller.stateMachine.ChangeState(controller.State<TameState>());
-                    Destroy(other.gameObject);
-                }
-                else if (otherFish.fishLevel == fish.fishLevel)
-                {
-                    Destroy(other.gameObject);
-                    Destroy(controller.gameObject);
+                    otherFish = colliders[1].GetComponent<FishController>();
                 }
                 else
                 {
-                    Destroy(controller.gameObject);
+                    otherFish = colliders[0].GetComponent<FishController>();
+                }
+                if (otherFish == null) { return; }
+
+                FishSO otherFishSO = otherFish.Component<FishHold>().fish;
+
+                if (otherFish.stateMachine.ActiveState().GetType() != typeof(DieState))
+                {
+                    if (otherFishSO.fishLevel + 1 == fish.fishLevel)
+                    {
+                        if (controller.stateMachine.ActiveState().GetType() == typeof(SwimState))
+                        {
+                            Debug.Log("Called1");
+                            controller.stateMachine.ChangeState(controller.State<TameState>());
+                        }
+                    }
+                    else if (otherFishSO.fishLevel - 1 == fish.fishLevel)
+                    {
+                        Debug.Log("Called2: " + otherFish.stateMachine.ActiveState().GetType());
+                        if (otherFish.stateMachine.ActiveState().GetType() == typeof(SwimState))
+                        {
+                            otherFish.stateMachine.ChangeState(otherFish.State<TameState>());
+                        }
+                    }
+                    if (otherFishSO.fishLevel < fish.fishLevel)
+                    {
+                        otherFish.stateMachine.ChangeState(otherFish.State<DieState>());
+                        controller.anim.SetTrigger("Eat");
+                    }
+                    else if (otherFishSO.fishLevel == fish.fishLevel)
+                    {
+                        otherFish.stateMachine.ChangeState(otherFish.State<DieState>());
+                        controller.stateMachine.ChangeState(controller.State<DieState>());
+                    }
+                    else
+                    {
+                        controller.stateMachine.ChangeState(controller.State<DieState>());
+                        otherFish.anim.SetTrigger("Eat");
+                    }
                 }
             }
         }
@@ -65,6 +87,7 @@ public class EatFish : CoreComponent
         if (colliders.Length > 0)
         {
             Debug.Log("Die");
+            //TODO die
         }
     }
     private void OnDrawGizmos()

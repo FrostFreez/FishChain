@@ -44,7 +44,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c907b57784ea3c54f970abd37bdccb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishHold
-  fish: {fileID: 11400000, guid: eac1eea3abdd7104eba4dc9eb01b1a35, type: 2}
+  fish: {fileID: 11400000, guid: de92b5cb45293f244aaa41df9fb96411, type: 2}
+--- !u!1 &4750012875391160534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4378091180706975065}
+  - component: {fileID: 1063693303156715522}
+  m_Layer: 6
+  m_Name: AutoDestroy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4378091180706975065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4750012875391160534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4392040068330940136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1063693303156715522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4750012875391160534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fa3145a31894e4cbd416e26a960641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoDestroy
 --- !u!1 &6005500569417135018
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +125,7 @@ Transform:
   m_Children:
   - {fileID: 935512083236813826}
   - {fileID: 4863357634929044134}
+  - {fileID: 4378091180706975065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9045601164711795885
@@ -98,6 +143,7 @@ MonoBehaviour:
   anim: {fileID: 5447915296070782757}
   rb: {fileID: 0}
   sr: {fileID: 0}
+  col: {fileID: 0}
 --- !u!95 &5447915296070782757
 Animator:
   serializedVersion: 7
@@ -287,3 +333,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfc9d529ad37be46a5a231d69affbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EatFish
+  fish: {fileID: 11400000, guid: de92b5cb45293f244aaa41df9fb96411, type: 2}

@@ -11,6 +11,7 @@ public class EntityController : MonoBehaviour
     public Animator anim;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
+    public CapsuleCollider2D col;
     protected virtual void Awake()
     {
         components = GetComponentsInChildren<CoreComponent>();
@@ -18,6 +19,7 @@ public class EntityController : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<CapsuleCollider2D>();
     }
     void Start()
     {
@@ -48,7 +50,6 @@ public class EntityController : MonoBehaviour
     {
         foreach (CoreComponent c in components)
         {
-            Debug.Log(gameObject + ": " + c.gameObject);
             if (c is T ret)
             {
                 return ret;

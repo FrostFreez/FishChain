@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishSO
   fishName: 
   fishLevel: 5
-  fishSpeed: 25
-  mouthRadius: 2.5
-  mouthOffset: 1
+  fishSpeed: 14
+  mouthRadius: 0.8
+  mouthOffset: 0.35
   animatorController: {fileID: 9100000, guid: f1d928c615eeb3c4cad9e7388a138b0b, type: 2}
+  minimumTime: 140
+  colliderSize: {x: 2, y: 1.4}

@@ -35,7 +35,7 @@ public abstract class BaseState
         this.animName = animName;
     }
 
-    public virtual void Enter() { enterTime = Time.time; DoChecks(); controller.anim.SetBool(animName, true); Debug.Log(animName); }
+    public virtual void Enter() { enterTime = Time.time; DoChecks(); controller.anim.SetBool(animName, true); }
     public virtual void DoChecks() { }
     public virtual void Update() { DoChecks(); }
     public virtual void FixedUpdate() { }

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FishLink : CoreComponent
@@ -19,7 +20,7 @@ public class FishLink : CoreComponent
             catchRadius * 2, LayerMask.GetMask("Fish"));
         fish = fishes[0].GetComponent<FishController>();
 
-        circle.transform.localScale = Vector2.one * catchRadius * 2;
+        circle.transform.localScale = 2 * catchRadius * Vector2.one;
         circle.SetActive(false);
     }
 
@@ -42,7 +43,12 @@ public class FishLink : CoreComponent
         }
         if (pi.throwHeld)
         {
+            Time.timeScale = 0.5f;
             timeThrowing += Time.deltaTime;
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
         circle.transform.position = transform.position + (catchSpeed * timeThrowing + initialOffset) * Vector3.right;
         if (pi.throwReleased)
@@ -53,7 +59,8 @@ public class FishLink : CoreComponent
     }
     private void Catch(Type type)
     {
-        Collider2D[] fishes = Physics2D.OverlapCircleAll(transform.position + (catchSpeed * timeThrowing + initialOffset) * Vector3.right,
+        Collider2D[] fishes = Physics2D.OverlapCircleAll(
+            transform.position + (catchSpeed * timeThrowing + initialOffset + PlayerStats.Instance.horizontalSpeed) * Vector3.right,
             catchRadius, LayerMask.GetMask("Fish"));
         if (fishes.Length > 0)
         {

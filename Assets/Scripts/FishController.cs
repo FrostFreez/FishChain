@@ -6,8 +6,9 @@ public class FishController : EntityController
     {
         base.Awake();
         states.Add(new SwimState(this, stateMachine, "Swim"));
-        states.Add(new TameState(this, stateMachine, "fed"));
+        states.Add(new TameState(this, stateMachine, "Swim"));
         states.Add(new LinkState(this, stateMachine, "Swim"));
         states.Add(new FreeState(this, stateMachine, "Swim"));
+        states.Add(new DieState(this, stateMachine, "Eaten"));
     }
 }

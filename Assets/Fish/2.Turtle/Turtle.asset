@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishSO
   fishName: Turtle
   fishLevel: 2
-  fishSpeed: 5
-  mouthRadius: 1
-  mouthOffset: 1
+  fishSpeed: 4
+  mouthRadius: 0.5
+  mouthOffset: 0.9
   animatorController: {fileID: 9100000, guid: 8518d14fd3dc2624680d07b72b1217c5, type: 2}
+  minimumTime: 0
+  colliderSize: {x: 2, y: 1}
