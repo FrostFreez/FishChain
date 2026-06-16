@@ -27,13 +27,10 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (loseScreen.gameObject.activeSelf)
-        {
-            loseScreen.GetStats();
-        }
         if (gameScreen.gameObject.activeSelf)
         {
-            gameScreen.GetStats();
+            Debug.Log("Updating Game Screen Stats");
+            gameScreen.SetStats(PlayerStats.Instance);
         }
     }
     public void ShowGameScreen()
@@ -45,5 +42,6 @@ public class UIManager : MonoBehaviour
     {
         loseScreen.gameObject.SetActive(true);
         gameScreen.gameObject.SetActive(false);
+        loseScreen.SetStats(PlayerStats.Instance);
     }
 }

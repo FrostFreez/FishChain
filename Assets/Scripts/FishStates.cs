@@ -12,8 +12,7 @@ public class SwimState : BaseState
     public override void Enter()
     {
         base.Enter();
-        controller.anim.SetFloat("Facing", -1);
-        controller.sr.flipX = false;
+        controller.sr.flipX = true;
     }
     public override void FixedUpdate()
     {
@@ -53,7 +52,7 @@ public class LinkState : BaseState
     {
         base.Enter();
         controller.rb.linearVelocity = Vector2.zero;
-        controller.sr.flipX = true;
+        controller.sr.flipX = false;
     }
 }
 

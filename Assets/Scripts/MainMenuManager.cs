@@ -5,11 +5,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("JuanScreen");
-    }
-    public void HighScoreMenu()
-    {
-        SceneManager.LoadScene("HighScoreScene");
+        SceneManager.LoadScene("SampleScene");
     }
     public void QuitGame()
     {

@@ -68,8 +68,10 @@ public class EatFish : CoreComponent
                     }
                     else if (otherFishSO.fishLevel == fish.fishLevel)
                     {
+                        Debug.Log("Called3");
                         otherFish.stateMachine.ChangeState(otherFish.State<DieState>());
                         controller.stateMachine.ChangeState(controller.State<DieState>());
+                        GameManager.Instance.Lose();
                     }
                     else
                     {
@@ -87,7 +89,8 @@ public class EatFish : CoreComponent
         if (colliders.Length > 0)
         {
             Debug.Log("Die");
-            //TODO die
+            controller.stateMachine.ChangeState(controller.State<DieState>());
+            GameManager.Instance.Lose();
         }
     }
     private void OnDrawGizmos()

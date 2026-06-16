@@ -9,11 +9,10 @@ public class LoseScreenController : MonoBehaviour
     {
         textsStats = GetComponentsInChildren<TextMeshProUGUI>();
     }
-    public void GetStats()
+    public void SetStats(PlayerStats stats)
     {
-        PlayerStats stats = PlayerStats.Instance;
-        textsStats[0].text = $"Speed: {stats.horizontalSpeed:F2}";
-        textsStats[1].text = $"Distance: {stats.totalDistance:F2} m";
-        textsStats[2].text = $"Time: {stats.totalTime:F2} s";
+        textsStats[0].text = $"Your Speed was:\n {stats.horizontalSpeed:F2}";
+        textsStats[1].text = $"Your Distance was:\n {stats.totalDistance:F2} m";
+        textsStats[2].text = $"Your Time was:\n {stats.totalTime:F2} s";
     }
 }

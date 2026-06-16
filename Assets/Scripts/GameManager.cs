@@ -1,7 +1,11 @@
+using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    private PlayerController player;
 
     private void Awake()
     {
@@ -11,18 +15,22 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        
+    }
+    private void Start()
+    {
+        player = FindAnyObjectByType<PlayerController>();
+
     }
 
     public void Lose()
     {
-        Debug.Log("Player has lost the game.");
+        Debug.Log("You Lose!");
         UIManager.Instance.ShowLoseScreen();
+        player.anim.SetTrigger("Die");
     }
     public void ResetGame()
     {
-        PlayerStats.Instance.horizontalSpeed = 0;
-        PlayerStats.Instance.totalDistance = 0;
-        PlayerStats.Instance.totalTime = 0;
-        UIManager.Instance.ShowGameScreen();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
