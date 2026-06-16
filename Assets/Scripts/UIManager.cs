@@ -29,7 +29,6 @@ public class UIManager : MonoBehaviour
     {
         if (gameScreen.gameObject.activeSelf)
         {
-            Debug.Log("Updating Game Screen Stats");
             gameScreen.SetStats(PlayerStats.Instance);
         }
     }

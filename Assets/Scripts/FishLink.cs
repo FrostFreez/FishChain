@@ -79,7 +79,9 @@ public class FishLink : CoreComponent
         Vector2 newPos = Vector2.right * initialOffset;
         newPos += fish.GetComponent<CapsuleCollider2D>().bounds.size * 0.5f * Vector2.right;
         fish.transform.position = (Vector2)transform.position + newPos;
+
         catchSpeed = fish.Component<FishHold>().fish.fishSpeed * 2;
+        Debug.Log("Caught " + fish.Component<FishHold>().fish.fishName + fish.Component<FishHold>().fish.fishSpeed * 2);
     }
     private void OnDrawGizmos()
     {
