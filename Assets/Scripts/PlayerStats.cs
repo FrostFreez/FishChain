@@ -10,6 +10,8 @@ public class PlayerStats : CoreComponent
     private FishLink link;
     public float verticalSpeed = 5, horizontalSpeed = 0;
     public float totalTime = 0, totalDistance = 0;
+    public float maxSpeed = 0;
+    public bool dead = false;
     private void Awake()
     {
         instance = this;
@@ -21,15 +23,17 @@ public class PlayerStats : CoreComponent
 
     public override void UpdateComponent()
     {
-        totalTime += Time.deltaTime;
-        totalDistance += Time.deltaTime * horizontalSpeed;
         if (link.fish == null)
         {
             horizontalSpeed -= 0.5f * Time.deltaTime * horizontalSpeed;
             if (horizontalSpeed < 0.1f)
             {
                 horizontalSpeed = 0;
+                GameManager.Instance.Lose();
             }
         }
+        if (dead) return;
+        totalTime += Time.deltaTime;
+        totalDistance += Time.deltaTime * horizontalSpeed;
     }
 }

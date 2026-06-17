@@ -13,6 +13,7 @@ public class SwimState : BaseState
     {
         base.Enter();
         controller.sr.flipX = true;
+        fish = controller.Component<FishHold>().fish;
     }
     public override void FixedUpdate()
     {
@@ -68,14 +69,11 @@ public class FreeState : BaseState
     public override void Enter()
     {
         base.Enter();
+        fish = controller.Component<FishHold>().fish;
     }
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        if (fish == null)
-        {
-            fish = controller.Component<FishHold>().fish;
-        }
         rb.linearVelocityX = fish.fishSpeed * 2;
     }
 }

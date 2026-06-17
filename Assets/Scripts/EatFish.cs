@@ -5,7 +5,6 @@ public class EatFish : CoreComponent
     public FishSO fish;
     public override void StartComponent()
     {
-        Debug.Log(controller);
         fish = controller.Component<FishHold>().fish;
     }
 
@@ -49,13 +48,11 @@ public class EatFish : CoreComponent
                     {
                         if (controller.stateMachine.ActiveState().GetType() == typeof(SwimState))
                         {
-                            Debug.Log("Called1");
                             controller.stateMachine.ChangeState(controller.State<TameState>());
                         }
                     }
                     else if (otherFishSO.fishLevel - 1 == fish.fishLevel)
                     {
-                        Debug.Log("Called2: " + otherFish.stateMachine.ActiveState().GetType());
                         if (otherFish.stateMachine.ActiveState().GetType() == typeof(SwimState))
                         {
                             otherFish.stateMachine.ChangeState(otherFish.State<TameState>());
@@ -63,18 +60,25 @@ public class EatFish : CoreComponent
                     }
                     if (otherFishSO.fishLevel < fish.fishLevel)
                     {
+                        if (otherFish.stateMachine.ActiveState().GetType() == typeof(LinkState))
+                        {
+                            GameManager.Instance.Lose();
+                        }
                         otherFish.stateMachine.ChangeState(otherFish.State<DieState>());
                         controller.anim.SetTrigger("Eat");
                     }
                     else if (otherFishSO.fishLevel == fish.fishLevel)
                     {
-                        Debug.Log("Called3");
                         otherFish.stateMachine.ChangeState(otherFish.State<DieState>());
                         controller.stateMachine.ChangeState(controller.State<DieState>());
                         GameManager.Instance.Lose();
                     }
                     else
                     {
+                        if (controller.stateMachine.ActiveState().GetType() == typeof(LinkState))
+                        {
+                            GameManager.Instance.Lose();
+                        }
                         controller.stateMachine.ChangeState(controller.State<DieState>());
                         otherFish.anim.SetTrigger("Eat");
                     }

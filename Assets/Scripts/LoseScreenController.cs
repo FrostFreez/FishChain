@@ -11,7 +11,7 @@ public class LoseScreenController : MonoBehaviour
     }
     public void SetStats(PlayerStats stats)
     {
-        textsStats[0].text = $"Your Speed was:\n {stats.horizontalSpeed:F2}";
+        textsStats[0].text = $"Your Max Speed was:\n {stats.maxSpeed:F2}";
         textsStats[1].text = $"Your Distance was:\n {stats.totalDistance:F2} m";
         textsStats[2].text = $"Your Time was:\n {stats.totalTime:F2} s";
     }

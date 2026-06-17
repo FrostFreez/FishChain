@@ -18,5 +18,5 @@ MonoBehaviour:
   mouthRadius: 0.7
   mouthOffset: 0.6
   animatorController: {fileID: 9100000, guid: 0ee6b67e170d9304fb23e759f84ee659, type: 2}
-  minimumTime: 60
-  colliderSize: {x: 2, y: 1.35}
+  minimumTime: 20
+  colliderSize: {x: 2, y: 1.5}

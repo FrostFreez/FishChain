@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
-        Debug.Log("You Lose!");
+        PlayerStats.Instance.dead = true;
         UIManager.Instance.ShowLoseScreen();
         player.anim.SetTrigger("Die");
     }
